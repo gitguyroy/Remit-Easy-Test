@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transwire.in - Money Exchange & Transfer</title>
+  <meta name="description" content="Simplifying The Complex FX Payments & Get You the Real Time Lowest Rates 24 X 7">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    // Configure Tailwind with your custom colors
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'custom-bg': '#151523',
+            'custom-text': '#F5E6D3',
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+      background-color: #151523;
+      color: #F5E6D3;
+      margin: 0;
+      padding: 0;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-[#151523] text-[#F5E6D3]">
+  <!-- Navigation -->
+  <header class="max-w-7xl mx-auto py-4 px-4 w-full flex items-center justify-between">
+    <div class="flex items-center">
+      <img src="logo.png" alt="Transwire.in Logo" class="h-10 w-auto">
+    </div>
+    
+    <nav class="hidden md:flex items-center space-x-6">
+      <a href="#" class="text-[#F5E6D3] hover:opacity-80 font-medium">
+        About
+      </a>
+      <a href="#" class="text-[#F5E6D3] hover:opacity-80 font-medium">
+        Services
+      </a>
+      <a href="#" class="text-[#F5E6D3] hover:opacity-80 font-medium">
+        Features
+      </a>
+      <div class="relative group">
+        <a href="#" class="text-[#F5E6D3] hover:opacity-80 font-medium flex items-center">
+          Industries
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="ml-1 h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </a>
+      </div>
+      <a href="#" class="text-[#F5E6D3] hover:opacity-80 font-medium">
+        Resource
+      </a>
+      <button class="ml-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 text-[#F5E6D3]"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          />
+        </svg>
+      </button>
+      <a href="#" class="bg-[#fb7185] text-[#151523] px-6 py-2 rounded hover:bg-[#f43f5e] transition-colors">
+        LOGIN
+      </a>
+    </nav>
+    
+    <!-- Mobile menu button -->
+    <button class="md:hidden" id="mobile-menu-button">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6 text-[#F5E6D3]"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </header>
+  
+  <!-- Mobile menu (hidden by default) -->
+  <div class="md:hidden hidden bg-[#151523] border-t border-[#F5E6D3]/20 py-4" id="mobile-menu">
+    <div class="flex flex-col space-y-4 px-4">
+      <a href="#" class="text-[#F5E6D3] hover:opacity-80 font-medium">About</a>
+      <a href="#" class="text-[#F5E6D3] hover:opacity-80 font-medium">Services</a>
+      <a href="#" class="text-[#F5E6D3] hover:opacity-80 font-medium">Features</a>
+      <a href="#" class="text-[#F5E6D3] hover:opacity-80 font-medium">Industries</a>
+      <a href="#" class="text-[#F5E6D3] hover:opacity-80 font-medium">Resource</a>
+      <a href="#" class="bg-[#fb7185] text-[#151523] px-6 py-2 rounded hover:bg-[#f43f5e] transition-colors w-fit">
+        LOGIN
+      </a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="relative bg-[#151523] py-16 md:py-24 border-t border-[#F5E6D3]/20">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center">
+      <div class="md:w-1/2 mb-10 md:mb-0 z-10">
+        <div class="text-sm text-[#F5E6D3]/80 mb-4 flex items-center">
+          <span class="mr-2">•</span> SINCE 2015
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold text-[#F5E6D3] leading-tight mb-4">
+          A FRIENDLY MONEY EXCHANGE & TRANSFER
+        </h1>
+        <p class="text-[#F5E6D3]/90 mb-8 max-w-lg">
+          Simplifying The Complex FX Payments & Get You the Real Time Lowest Rates 24 X 7
+        </p>
+        
+        <!-- Currency Converter Form -->
+        <div class="bg-[#151523] p-6 rounded-lg shadow-md max-w-md border border-[#F5E6D3]/30">
+          <h3 class="text-[#fb7185] text-xl mb-4">Study Abroad Money Transfer</h3>
+          
+          <div class="mb-4">
+            <div class="flex">
+              <div class="relative w-1/3 mr-2">
+                <div class="border border-[#F5E6D3]/30 rounded flex items-center px-3 py-2 bg-[#151523]/80">
+                  <div class="w-5 h-5 mr-2 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs">
+                    US
+                  </div>
+                  <span class="text-[#F5E6D3]">USD</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="ml-auto h-4 w-4 text-[#F5E6D3]/70"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
+              
+              <div class="w-2/3">
+                <input
+                  type="text"
+                  id="amount-input"
+                  placeholder="Enter Amount"
+                  class="w-full border border-[#F5E6D3]/30 rounded px-3 py-2 bg-[#151523]/80 text-[#F5E6D3] placeholder:text-[#F5E6D3]/50"
+                >
+              </div>
+            </div>
+          </div>
+          
+          <div class="mb-6">
+            <input
+              type="text"
+              id="contact-input"
+              placeholder="Email or Phone Number"
+              class="w-full border border-[#F5E6D3]/30 rounded px-3 py-2 bg-[#151523]/80 text-[#F5E6D3] placeholder:text-[#F5E6D3]/50"
+            >
+          </div>
+          
+          <div class="flex justify-end">
+            <button id="send-button" class="bg-[#fb7185] text-[#151523] px-6 py-2 rounded hover:bg-[#f43f5e] transition-colors">
+              Send Now
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="md:w-1/2 relative z-10">
+        <img src="hero-image.png" alt="Person with phone" class="w-full h-auto">
+      </div>
+      
+      <!-- Decorative elements -->
+      <div class="absolute top-0 right-0 w-1/3 h-full bg-[#151523] border-l border-[#F5E6D3]/20 transform skew-x-12 origin-top-right z-0"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-1/4 z-0">
+        <div class="h-full w-full flex flex-col items-end justify-center gap-2 pr-8">
+          <!-- Dots pattern - created with JavaScript -->
+          <div id="dots-pattern"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-2xl font-bold flex items-center justify-center text-[#F5E6D3]">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 text-[#fb7185] mr-2 transform rotate-180"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+          LET'S GET <span class="text-[#fb7185] ml-2">STARTED...</span>
+        </h2>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Step 1 -->
+        <div class="relative">
+          <div class="absolute -top-4 -left-4 w-16 h-16 bg-[#fb7185]/10 -z-10"></div>
+          <div class="border border-[#F5E6D3]/20 rounded-lg p-8 flex flex-col items-center text-center bg-[#151523] relative z-10">
+            <div class="mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-12 w-12 text-[#fb7185]"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"
+                />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 text-[#F5E6D3]">Sign On</h3>
+            <p class="text-[#F5E6D3]/70">Create your account</p>
+          </div>
+        </div>
+        
+        <!-- Step 2 -->
+        <div class="relative">
+          <div class="border border-[#F5E6D3]/20 rounded-lg p-8 flex flex-col items-center text-center bg-[#151523] relative z-10">
+            <div class="mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-12 w-12 text-[#fb7185]"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 text-[#F5E6D3]">Book Currency</h3>
+            <p class="text-[#F5E6D3]/70">Get the best rates</p>
+          </div>
+        </div>
+        
+        <!-- Step 3 -->
+        <div class="relative">
+          <div class="border border-[#F5E6D3]/20 rounded-lg p-8 flex flex-col items-center text-center bg-[#151523] relative z-10">
+            <div class="mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-12 w-12 text-[#fb7185]"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 text-[#F5E6D3]">Pay Transfer</h3>
+            <p class="text-[#F5E6D3]/70">Complete your transaction</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 border-t border-[#F5E6D3]/20">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+          <img src="logo.png" alt="Transwire.in Logo" class="h-8 w-auto">
+        </div>
+        <div class="text-[#F5E6D3]/70 text-sm">
+          © 2023 Transwire.in. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      mobileMenuButton.addEventListener('click', function() {
+        // Toggle the 'hidden' class
+        mobileMenu.classList.toggle('hidden');
+      });
+      
+      // Create dots pattern
+      const dotsPattern = document.getElementById('dots-pattern');
+      for (let i = 0; i < 6; i++) {
+        const row = document.createElement('div');
+        row.className = 'flex gap-2';
+        
+        for (let j = 0; j < 3; j++) {
+          const dot = document.createElement('div');
+          dot.className = 'h-1.5 w-1.5 rounded-full bg-[#F5E6D3] opacity-30';
+          row.appendChild(dot);
+        }
+        
+        dotsPattern.appendChild(row);
+      }
+      
+      // Form handling
+      const sendButton = document.getElementById('send-button');
+      const amountInput = document.getElementById('amount-input');
+      const contactInput = document.getElementById('contact-input');
+      
+      sendButton.addEventListener('click', function() {
+        const amount = amountInput.value;
+        const contact = contactInput.value;
+        
+        if (!amount) {
+          alert('Please enter an amount');
+          return;
+        }
+        
+        if (!contact) {
+          alert('Please enter your email or phone number');
+          return;
+        }
+        
+        // Here you would typically send the data to your server
+        alert(`Thank you! Your transfer request for ${amount} USD has been received. We will contact you at ${contact}.`);
+        
+        // Clear the form
+        amountInput.value = '';
+        contactInput.value = '';
+      });
+    });
+  </script>
+</body>
+</html>
