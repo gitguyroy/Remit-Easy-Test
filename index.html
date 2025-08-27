@@ -227,6 +227,8 @@
     const thankYouPopup = document.getElementById('thankYouPopup');
     const closePopup = document.getElementById('closePopup');
     const thankYouMessage = document.getElementById('thankYouMessage');
+    const contactFormContainer = document.getElementById('contactForm');
+    const amountInput = document.querySelector('input[name="amount"]'); // <-- Added for clearing
 
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -238,13 +240,15 @@
         .then(response => {
           thankYouMessage.textContent = `Thank you, ${name}! We will contact you at ${phone} with the best exchange rates.`;
           thankYouPopup.style.display = 'flex';
-          form.reset();
+          // Remove the contact form permanently (including its container)
+          contactFormContainer.innerHTML = '';
         })
         .catch(error => console.error('Error!', error.message));
     });
 
     closePopup.addEventListener('click', () => {
       thankYouPopup.style.display = 'none';
+      if (amountInput) amountInput.value = ""; // <-- Clear the amount field
     });
   </script>
 </body>
