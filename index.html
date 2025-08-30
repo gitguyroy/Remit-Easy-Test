@@ -6,19 +6,20 @@
   <title>Easy Remit - International Transfers</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body { 
-      font-family: 'Inter', sans-serif; 
+    body {
+      font-family: 'Inter', sans-serif;
       color: #000;
       letter-spacing: 0.2px;
     }
-    h1, h2, h3, h4 { 
+    h1, h2, h3, h4 {
       font-family: 'Inter', sans-serif;
       font-weight: 800;
       letter-spacing: -0.5px;
       color: #000;
     }
-    p, li, td, th, input, select, button, label { 
+    p, li, td, th, input, select, button, label {
       font-family: 'Inter', sans-serif;
       font-weight: 400;
       line-height: 1.6;
@@ -56,17 +57,17 @@
       border: none !important;
     }
 
-    /* Popup Styles */
-    #thankYouPopup {
+    /* Popup Styles (Thank You, Login, Signup) */
+    .popup-overlay {
       position: fixed;
       inset: 0;
       background: rgba(0,0,0,0.6);
-      display: none;
+      display: none; /* Hidden by default */
       align-items: center;
       justify-content: center;
       z-index: 50;
     }
-    #thankYouPopup .popup-content {
+    .popup-content {
       background: #fff;
       padding: 2rem;
       border-radius: 0.75rem;
@@ -75,15 +76,30 @@
       width: 90%;
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
       animation: popupScale 0.3s ease;
+      position: relative; /* For close button positioning */
     }
     @keyframes popupScale {
       from { transform: scale(0.8); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
     }
+    .popup-close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+      color: #aaa;
+      cursor: pointer;
+      border: none;
+      background: none;
+      padding: 0;
+    }
+    .popup-close-btn:hover {
+      color: #333;
+    }
   </style>
 </head>
 <body class="bg-[#fff5ed] text-black">
- 
+
   <!-- Navigation -->
   <header class="border-b border-gray-200">
     <div class="max-w-6xl mx-auto flex items-center justify-between p-4">
@@ -92,8 +108,8 @@
         <ul class="flex space-x-6 text-lg">
           <li><a href="#about" class="pb-1">About</a></li>
           <li><a href="#contact" class="pb-1">Contact</a></li>
-          <li><a href="#login" class="pb-1">Login</a></li>
-          <li><a href="#signup" class="pb-1">Signup</a></li>
+          <li><a href="#" id="loginLink" class="pb-1">Login</a></li>
+          <li><a href="#" id="signupLink" class="pb-1">Signup</a></li>
         </ul>
       </nav>
     </div>
@@ -207,11 +223,42 @@
   </footer>
 
   <!-- Thank You Popup -->
-  <div id="thankYouPopup" class="flex">
+  <div id="thankYouPopup" class="popup-overlay">
     <div class="popup-content">
+      <button class="popup-close-btn" id="closeThankYouPopup">&times;</button>
       <h4 class="text-2xl font-bold mb-4">🎉 Thank You!</h4>
       <p id="thankYouMessage">Your submission has been received. We will contact you soon.</p>
       <button id="closePopup" class="mt-6 bg-black text-white px-6 py-2 rounded hover:opacity-80 transition">Close</button>
+    </div>
+  </div>
+
+  <!-- Login Popup -->
+  <div id="loginPopup" class="popup-overlay">
+    <div class="popup-content">
+      <button class="popup-close-btn" id="closeLoginPopup">&times;</button>
+      <h4 class="text-2xl font-bold mb-4">Login to Easy Remit</h4>
+      <form class="space-y-4">
+        <input type="email" placeholder="Email" class="border rounded px-2 py-2 w-full" required>
+        <input type="password" placeholder="Password" class="border rounded px-2 py-2 w-full" required>
+        <button type="submit" class="bg-black text-white px-6 py-3 rounded-lg font-semibold hover:opacity-80 transition w-full">Login</button>
+      </form>
+      <p class="mt-4 text-sm">Don't have an account? <a href="#" id="switchToSignup" class="text-blue-600 hover:underline">Sign up</a></p>
+    </div>
+  </div>
+
+  <!-- Signup Popup -->
+  <div id="signupPopup" class="popup-overlay">
+    <div class="popup-content">
+      <button class="popup-close-btn" id="closeSignupPopup">&times;</button>
+      <h4 class="text-2xl font-bold mb-4">Sign Up for Easy Remit</h4>
+      <form class="space-y-4">
+        <input type="text" placeholder="Full Name" class="border rounded px-2 py-2 w-full" required>
+        <input type="email" placeholder="Email" class="border rounded px-2 py-2 w-full" required>
+        <input type="password" placeholder="Password" class="border rounded px-2 py-2 w-full" required>
+        <input type="password" placeholder="Confirm Password" class="border rounded px-2 py-2 w-full" required>
+        <button type="submit" class="bg-black text-white px-6 py-3 rounded-lg font-semibold hover:opacity-80 transition w-full">Sign Up</button>
+      </form>
+      <p class="mt-4 text-sm">Already have an account? <a href="#" id="switchToLogin" class="text-blue-600 hover:underline">Login</a></p>
     </div>
   </div>
 
@@ -226,10 +273,11 @@
     const scriptURL = "YOUR_GOOGLE_APPS_SCRIPT_URL"; // Replace with deployed Google Apps Script URL
     const form = document.getElementById('googleSheetForm');
     const thankYouPopup = document.getElementById('thankYouPopup');
-    const closePopup = document.getElementById('closePopup');
+    const closeThankYouPopupBtn = document.getElementById('closeThankYouPopup'); // Changed ID
+    const closePopupBtn = document.getElementById('closePopup'); // Existing close button
     const thankYouMessage = document.getElementById('thankYouMessage');
     const contactFormContainer = document.getElementById('contactForm');
-    const amountInput = document.querySelector('input[name="amount"]'); // <-- Added for clearing
+    const amountInput = document.querySelector('input[name="amount"]');
 
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -237,20 +285,99 @@
       const name = formData.get('name');
       const phone = formData.get('phone');
 
+      // For demonstration purposes, we'll just show the popup.
+      // In a real application, you'd perform the fetch to Google Sheets here.
+      console.log('Submitting to Google Sheets:', Object.fromEntries(formData.entries()));
+
+      thankYouMessage.textContent = `Thank you, ${name}! We will contact you at ${phone} with the best exchange rates.`;
+      thankYouPopup.style.display = 'flex';
+      // Remove the contact form permanently (including its container)
+      contactFormContainer.innerHTML = '';
+
+      // Original fetch logic (uncomment and replace scriptURL for actual use)
+      /*
       fetch(scriptURL, { method: 'POST', body: formData })
         .then(response => {
           thankYouMessage.textContent = `Thank you, ${name}! We will contact you at ${phone} with the best exchange rates.`;
           thankYouPopup.style.display = 'flex';
-          // Remove the contact form permanently (including its container)
           contactFormContainer.innerHTML = '';
         })
         .catch(error => console.error('Error!', error.message));
+      */
     });
 
-    closePopup.addEventListener('click', () => {
+    closeThankYouPopupBtn.addEventListener('click', () => {
       thankYouPopup.style.display = 'none';
-      if (amountInput) amountInput.value = ""; // <-- Clear the amount field
+      if (amountInput) amountInput.value = "";
     });
+
+    closePopupBtn.addEventListener('click', () => { // Keep existing close button functionality
+      thankYouPopup.style.display = 'none';
+      if (amountInput) amountInput.value = "";
+    });
+
+
+    // Login and Signup Popup Logic
+    const loginLink = document.getElementById('loginLink');
+    const signupLink = document.getElementById('signupLink');
+    const loginPopup = document.getElementById('loginPopup');
+    const signupPopup = document.getElementById('signupPopup');
+    const closeLoginPopup = document.getElementById('closeLoginPopup');
+    const closeSignupPopup = document.getElementById('closeSignupPopup');
+    const switchToSignup = document.getElementById('switchToSignup');
+    const switchToLogin = document.getElementById('switchToLogin');
+
+    function openPopup(popup) {
+      popup.style.display = 'flex';
+    }
+
+    function closePopup(popup) {
+      popup.style.display = 'none';
+    }
+
+    loginLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      openPopup(loginPopup);
+    });
+
+    signupLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      openPopup(signupPopup);
+    });
+
+    closeLoginPopup.addEventListener('click', () => {
+      closePopup(loginPopup);
+    });
+
+    closeSignupPopup.addEventListener('click', () => {
+      closePopup(signupPopup);
+    });
+
+    switchToSignup.addEventListener('click', (e) => {
+      e.preventDefault();
+      closePopup(loginPopup);
+      openPopup(signupPopup);
+    });
+
+    switchToLogin.addEventListener('click', (e) => {
+      e.preventDefault();
+      closePopup(signupPopup);
+      openPopup(loginPopup);
+    });
+
+    // Close popups when clicking outside of them
+    window.addEventListener('click', (e) => {
+      if (e.target === loginPopup) {
+        closePopup(loginPopup);
+      }
+      if (e.target === signupPopup) {
+        closePopup(signupPopup);
+      }
+      if (e.target === thankYouPopup) {
+        closePopup(thankYouPopup);
+      }
+    });
+
   </script>
 </body>
 </html>
